@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "823805551816",
+    "project_id": "autiverse-c1c01",
+    "storage_bucket": "autiverse-c1c01.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823805551816:android:6411af0c1cdd6b4836b1fd",
+        "android_client_info": {
+          "package_name": "com.example.autiverse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTjpD4LytBFPe4lz-esyhwyUvUE5nnkAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
