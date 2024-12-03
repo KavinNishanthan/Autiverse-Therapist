@@ -47,6 +47,7 @@ dev_dependencies:
   firebase_core: ^3.8.0
   cloud_firestore: ^5.5.0
   firebase_auth: ^5.3.3
+  liquid_swipe: ^3.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -62,6 +63,7 @@ flutter:
     - assets/images/decoration_images/signup.jpg
     - assets/images/decoration_images/vrlogo.jpg
     - assets/images/decoration_images/login.jpg
+    - assets/images/on_boarding_images/onboard.jpg
 
   #   - images/a_dot_ham.jpeg
 
@@ -76,10 +78,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: conf
+      fonts:
+        - asset: assets/fonts/Comfortaa.ttf
+          weight: 700
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

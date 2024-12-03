@@ -158,40 +158,41 @@ class _SignupPageState extends State<SignupPage> {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Removes the back button
+        automaticallyImplyLeading: false,
         title: Row(
           children: [
             Container(
-              margin: const EdgeInsets.only(
-                  right: 10.0), // Adds spacing to the right of the image
+              margin: const EdgeInsets.only(right: 10.0),
               child: Image.asset(
-                'assets/images/decoration_images/vrlogo.jpg', // Replace with your image path
-                height: 58, // Adjust as needed
+                'assets/images/decoration_images/vrlogo.jpg',
+                height: 58,
                 width: 58,
               ),
             ),
             Text.rich(
               TextSpan(
-                text: 'Auti', // Regular part
+                text: 'Auti',
                 style: const TextStyle(
                   fontSize: 24,
+                  fontFamily: 'conf',
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
                   color: Color.fromARGB(255, 95, 103, 107),
                 ),
                 children: [
                   TextSpan(
-                    text: ' Verse', // Decorated part
+                    text: 'Verse',
                     style: TextStyle(
                       fontSize: 24,
+                      fontFamily: 'conf',
                       fontWeight: FontWeight.bold,
                       color: Colors.blue,
                       fontStyle: FontStyle.italic,
                       shadows: [
                         Shadow(
-                          offset: Offset(1.5, 1.5), // Shadow position
-                          blurRadius: 3.0, // Shadow blur
-                          color: Colors.grey, // Shadow color
+                          offset: Offset(1.5, 1.5),
+                          blurRadius: 3.0,
+                          color: Colors.grey,
                         ),
                       ],
                     ),

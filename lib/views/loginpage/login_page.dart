@@ -124,15 +124,17 @@ class _LoginPageState extends State<LoginPage> {
                 text: 'Auti',
                 style: const TextStyle(
                   fontSize: 24,
+                  fontFamily: 'conf',
                   fontWeight: FontWeight.bold,
                   fontStyle: FontStyle.italic,
                   color: Color.fromARGB(255, 95, 103, 107),
                 ),
                 children: [
                   TextSpan(
-                    text: ' Verse',
+                    text: 'Verse',
                     style: TextStyle(
                       fontSize: 24,
+                      fontFamily: 'conf',
                       fontWeight: FontWeight.bold,
                       color: Colors.blue,
                       fontStyle: FontStyle.italic,
