@@ -1,5 +1,6 @@
 import 'package:autiverse/core/widgets/my_buttons.dart';
 import 'package:autiverse/core/widgets/text_field.dart';
+import 'package:autiverse/services/authentication.dart';
 import 'package:flutter/material.dart'; // For date formatting
 
 class AddChildrenPage extends StatefulWidget {
@@ -24,8 +25,7 @@ class _AddChildrenPageState extends State<AddChildrenPage> {
   bool _isFormSubmitted = false;
 
   String? _validateField(String? value, String fieldName) {
-    if (!_isFormSubmitted)
-      return null; // Do not validate until form is submitted
+    if (!_isFormSubmitted) return null;
     if (value == null || value.isEmpty) {
       return '$fieldName cannot be empty';
     }
@@ -39,14 +39,41 @@ class _AddChildrenPageState extends State<AddChildrenPage> {
     return null;
   }
 
-  void _submitForm() {
+  
+  void _submitForm() async {
     setState(() {
       _isFormSubmitted = true;
     });
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Child added successfully!')),
+      final String result = await Authentication().addStudent(
+        name: nameController.text.trim(),
+        age: int.parse(ageController.text.trim()),
+        dob: dobController.text.trim(),
+        email: emailController.text.trim(),
+        parentMobile: parentMobileController.text.trim(),
+        fatherName: fatherNameController.text.trim(),
+        motherName: motherNameController.text.trim(),
+        gender: selectedGender ?? "",
+        bloodGroup: selectedBloodGroup ?? "",
       );
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result)),
+      );
+
+      if (result == "Student added successfully!") {
+        nameController.clear();
+        ageController.clear();
+        dobController.clear();
+        emailController.clear();
+        parentMobileController.clear();
+        fatherNameController.clear();
+        motherNameController.clear();
+        setState(() {
+          selectedGender = null;
+          selectedBloodGroup = null;
+        });
+      }
     }
   }
 

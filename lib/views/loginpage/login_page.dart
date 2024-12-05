@@ -53,7 +53,6 @@ class _LoginPageState extends State<LoginPage> {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
-    // Input validation
     setState(() {
       _emailError = email.isEmpty ? "Email cannot be empty" : null;
       _passwordError = password.isEmpty ? "Password cannot be empty" : null;
@@ -64,14 +63,14 @@ class _LoginPageState extends State<LoginPage> {
         _isLoading = true;
       });
 
-      String result =
+      Object result =
           await Authentication().loginUser(email: email, password: password);
 
       setState(() {
         _isLoading = false;
       });
 
-      if (result == "success") {
+      if (result is Map<String, dynamic> && result['status'] == 'success') {
         Navigator.pushNamed(context, '/home');
       } else {
         showDialog(

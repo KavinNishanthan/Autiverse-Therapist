@@ -1,8 +1,11 @@
 import 'package:autiverse/models/user_model.dart';
+import 'package:autiverse/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AppDrawer extends StatelessWidget {
-  final User user;
+  final UserModel user;
 
   const AppDrawer({Key? key, required this.user}) : super(key: key);
 
@@ -68,8 +71,7 @@ class AppDrawer extends StatelessWidget {
                       },
                     ),
                     ListTile(
-                      leading:
-                          const Icon(Icons.add, color: Colors.black),
+                      leading: const Icon(Icons.add, color: Colors.black),
                       title: const Text('Add Children',
                           style: TextStyle(color: Colors.black)),
                       onTap: () {
@@ -91,11 +93,16 @@ class AppDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 25.0),
               child: ListTile(
-                leading: const Icon(Icons.logout, color: Colors.red),
-                title:
-                    const Text('Logout', style: TextStyle(color: Colors.red)),
-                onTap: () {
-                  Navigator.pushNamed(context, '/login');
+                leading: const Icon(Icons.logout),
+                title: const Text('Logout'),
+                onTap: () async {
+                  final userProvider =
+                      Provider.of<UserProvider>(context, listen: false);
+                  userProvider.clearUser();
+
+                  await FirebaseAuth.instance.signOut();
+
+                  Navigator.pushReplacementNamed(context, '/login');
                 },
               ),
             ),
@@ -105,3 +112,4 @@ class AppDrawer extends StatelessWidget {
     );
   }
 }
+
