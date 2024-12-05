@@ -15,32 +15,45 @@ class Authentication {
     required String phone,
     required String centername,
   }) async {
-    String res = "Some error Occurred";
+    String res = "Some error occurred";
     try {
-      if (email.isNotEmpty ||
-          password.isNotEmpty ||
-          name.isNotEmpty ||
-          phone.isNotEmpty ||
+      if (email.isNotEmpty &&
+          password.isNotEmpty &&
+          name.isNotEmpty &&
+          phone.isNotEmpty &&
           centername.isNotEmpty) {
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
         print(cred.user!.uid);
+
+        String profileImageUrl = generateProfileImageUrl(name);
+
         await _firestore.collection("users").doc(cred.user!.uid).set({
           'uid': cred.user!.uid,
           'name': name,
           'center name': centername,
           'email': email,
           'phone': phone,
+          'profileImageUrl': profileImageUrl,
           'studentId': [],
         });
         res = "success";
+      } else {
+        res = "Please fill all fields";
       }
     } catch (err) {
       return err.toString();
     }
     return res;
+  }
+
+  String generateProfileImageUrl(String name) {
+    String initial = name.isNotEmpty ? name[0].toUpperCase() : 'A';
+    String imageUrl =
+        "https://ui-avatars.com/api/?name=$initial&background=random&color=fff&length=1";
+    return imageUrl;
   }
 
   Future<Object> loginUser({
@@ -96,11 +109,12 @@ class Authentication {
         return "Student with this email already exists";
       }
 
+      String profileImageUrl = generateProfileImageUrl(name);
+
       DocumentReference docRef =
           FirebaseFirestore.instance.collection('students').doc();
-
       await docRef.set({
-        'id': docRef.id,
+        'studentId': docRef.id,
         'name': name,
         'age': age,
         'dob': dob,
@@ -110,6 +124,7 @@ class Authentication {
         'motherName': motherName,
         'gender': gender,
         'bloodGroup': bloodGroup,
+        'profileImageUrl': profileImageUrl,
         'games': [],
         'createdAt': FieldValue.serverTimestamp(),
       });

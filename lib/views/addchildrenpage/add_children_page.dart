@@ -39,7 +39,6 @@ class _AddChildrenPageState extends State<AddChildrenPage> {
     return null;
   }
 
-  
   void _submitForm() async {
     setState(() {
       _isFormSubmitted = true;
@@ -55,6 +54,7 @@ class _AddChildrenPageState extends State<AddChildrenPage> {
         motherName: motherNameController.text.trim(),
         gender: selectedGender ?? "",
         bloodGroup: selectedBloodGroup ?? "",
+        context: context,
       );
 
       ScaffoldMessenger.of(context).showSnackBar(
