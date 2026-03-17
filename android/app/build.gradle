@@ -29,7 +29,7 @@ android {
     }
 
     defaultConfig {
-        minSdk = 23
+        minSdkVersion = flutter.minSdkVersion
         versionCode 1
         versionName "1.0"
         applicationId = "com.example.autiverse"
